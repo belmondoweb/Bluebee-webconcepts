@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { SearchCityComponent } from './components/search-city/search-city.component';
 import { ForecastResultComponent } from './components/forecast-result/forecast-result.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavBarMenuComponent } from './components/nav-bar-menu/nav-bar-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchCityComponent,
-    ForecastResultComponent
+    ForecastResultComponent,
+    NavBarMenuComponent
   ],
   imports: [
     BrowserModule,

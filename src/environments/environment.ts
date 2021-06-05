@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // API_Key:'0d7303c17ee3d3482cd82a2ad273a90d', using in weatherParams
   // FullAPI:'api.openweathermap.org/data/2.5/weather?q={city}&appid={API_Key}&units={units}',
-  weatherUrl: 'https://api.openweathermap.org/data/2.5/weather?=',
+  weatherUrl: 'https://api.openweathermap.org/data/2.5/weather?q=',
   weatherParms: '&appid=0d7303c17ee3d3482cd82a2ad273a90d&units=',
   weatherIconURL: 'https://openweathermap.org/img/w/'
 };

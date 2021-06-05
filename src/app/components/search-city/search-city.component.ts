@@ -17,7 +17,7 @@ import { __values } from 'tslib';
   styleUrls: ['./search-city.component.css']
 })
 export class SearchCityComponent implements OnInit {
-  // @Input('weatherData') weatherItem: ICity;
+  @Input('weatherData') weatherItem: ICity;
   public cities$: Observable<ICity[]>; 
   public city: City;
   weatherIconURL = 'https://openweathermap.org/img/w/';
@@ -31,7 +31,7 @@ private citySub = new Subject<string>();
   cityID: number =6;
   searchText: string|null=null;
   private citySub$: Subject<void> = new Subject(); //maybe will use later if ...
-  weatherData: any;
+  weatherData: any=[];
   submitted = false;
 
   constructor(private _service: WeatherServiceService, private fb: FormBuilder ) { 
@@ -52,8 +52,9 @@ private citySub = new Subject<string>();
         
     // ])
     this.form = this.fb.group({
-      name:[''],
-      temp: [''], })
+      name:['', Validators.required],
+      temp: ['',Validators.required], 
+    })
   
   }
 
@@ -62,7 +63,7 @@ private citySub = new Subject<string>();
     //  this.formArray.push(this.form.value)
       this._service.addWeatherItem(this.form.value) 
       localStorage.setItem('local saved cities', JSON.stringify(form));
-        window.alert('Still WORKING ON IT!! lol ;)\n\n' + JSON.stringify(this.form.value, null, 4));
+        // window.alert('Still WORKING ON IT!! lol ;)\n\n' + JSON.stringify(this.form.value, null, 4));
         console.log('saved?')
        
     }
@@ -76,18 +77,16 @@ private citySub = new Subject<string>();
     // ********** Get data from api **********//
    
       sendToAPI(formValues){
-      
+      debugger;
       this._service
       .fetchrApi(formValues.name, formValues.temp)
-      .subscribe(data =>  this.weatherData = data)
+      .subscribe(data => {
+        this.weatherData.push(data);
         console.log("Hey are you there? Form value ",formValues?.temp); 
-      }
+       
+      })
+    }
     
-  // yesturday ... will not use
-  // searchCity(cityId: string, units){
-  //  this._service.fetchrApi(cityId, units).subscribe(data=>
-  //   this.weatherData = data)
-  //   console.log('Haloha I am here : >',cityId)
-  // }
+  
  
 }

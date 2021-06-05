@@ -5,6 +5,9 @@
 }
 .form-group{
     margin: 5px;
+    
+    text-align: center;
+    padding-top: 5em;
 }
 .btn-warning.disabled, .btn-warning:disabled {
     margin: 25px;
@@ -12,4 +15,16 @@
 .container{
     margin: auto;
     padding: 100px;
+}
+ul {
+    list-style-type: none;
+}
+
+
+.card-title {
+    margin-bottom: .5rem;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-style: italic;
 }
