@@ -10,7 +10,7 @@
   <div class="col-sm-12">
       <div class="card">
           <div class="card-header bg-info">
-              <h4 class="card-title mb-0 text-white">Search your location</h4>
+              <h4 class="card-title mb-0 text-white">search your location don't forget input units</h4>
           </div>
           <!-- lookin to fix it after work...  I replaced it bat to regular form for now. .... -->
           <!-- <form novalidate class="d-flex align-items-center ml-auto" [formGroup]="form" (ngSubmit)="sendToAPI(formArray.value)"> -->
@@ -21,8 +21,8 @@
           <form novalidate class="col-12" 
           [formGroup]="form"
            (ngSubmit)="sendToAPI(form.value)">  
-           <div formArrayName="weather">
-            <div *ngFor="let itemCity of weatherArray.controls; let i = index;"  [formGroupName]="i"> 
+           <div class="row" formArrayName="weather">
+            <div *ngFor="let itemCity of weatherArray.controls;let i = index;" class="col-12"  [formGroupName]="i"> 
               <div class="input-group">
                 <div class="col-4">
                   <div class="form-group">
@@ -55,26 +55,41 @@
                        </div> 
                        <!-- [disabled]="!form.valid" -->
               </div> 
-             <!-- *********** display weather ************ -->
-             <div class="container" *ngIf="weatherData[i] != null">
-              <div class="card results" *ngFor="let weather of weatherData">
-                <h2>Your Search for {{weatherData[i].name}}</h2>
-                <h4>
-                  <div class="row">  
-                    <div class="col">
-                      {{weatherData[0].name}}
-                      <img [src]="weatherIconURL + weatherData[i].weather[0].icon +'.png'">
-                      {{weatherData[i].weather[0].description}} / {{weatherData[i].main.temp}}°
-                    </div>
-                  </div>  
-                </h4>
-              </div>
-            </div>
+              <div class="container" *ngIf="weatherData[i] != null">
+                <div>
+                  <div class="row pt-5">
+                    <h2>you searched for {{weatherData[i].name}}</h2>
+               <h4>
+                 {{weatherData[i].name}}
+                 <img [src]="weatherIconURL + weatherData[i].weather[0].icon +'.png'"> 
+                 {{weatherData[i].weather[0].description}} / {{weatherData[i].main.temp}}°
+              </h4>
+              <div class="col-6">city: {{weatherData[i].name}}</div>   
+               <div class="col-6">temp:{{weatherData[i].weather.icon}} -{{weatherData[i].main.temp}} </div> 
+             </div>
+                </div>
+    
+              </div> 
              </div> 
            </div> 
 
           </form>
-         
+          
+          <!-- <div class="container" *ngIf="weatherData != null">
+            <div *ngFor="let weather of weatherData">
+              <div class="row pt-5">
+                <h2>you searched for {{weather.name}}</h2>
+           <h4>
+             {{weather.name}}
+             <img [src]="weatherIconURL + weather.weather[0].icon +'.png'"> 
+             {{weather.weather[0].description}} / {{weather.main.temp}}°
+          </h4>
+          <div class="col-6">city: {{weather.name}}</div>   
+           <div class="col-6">temp:{{weather.weather.icon}} -{{weather.main.temp}} </div> 
+         </div>
+            </div>
+
+          </div> -->
    
           </div>
       </div>
@@ -92,4 +107,3 @@
      </li>
   </ul>
 </div>
-

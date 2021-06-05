@@ -19,6 +19,9 @@
 ul {
     list-style-type: none;
 }
+.card .result-cities{
+    align-items: center;
+}
 
 
 .card-title {
