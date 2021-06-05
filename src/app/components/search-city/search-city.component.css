@@ -1,0 +1,15 @@
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+    
+}
+.form-group{
+    margin: 5px;
+}
+.btn-warning.disabled, .btn-warning:disabled {
+    margin: 25px;
+}
+.container{
+    margin: auto;
+    padding: 100px;
+}
