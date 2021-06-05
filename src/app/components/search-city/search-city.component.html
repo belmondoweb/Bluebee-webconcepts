@@ -10,7 +10,7 @@
   <div class="col-sm-12">
       <div class="card">
           <div class="card-header bg-info">
-              <h4 class="card-title">Search Location</h4>
+              <h4 class="card-title mb-0 text-white">Search your location</h4>
           </div>
           <!-- lookin to fix it after work...  I replaced it bat to regular form for now. .... -->
           <!-- <form novalidate class="d-flex align-items-center ml-auto" [formGroup]="form" (ngSubmit)="sendToAPI(formArray.value)"> -->
@@ -18,55 +18,78 @@
             <!-- <ng-container  formArrayName="form" *ngFor="let city of formArray.controls; let i = index">
               <div [formGroupName]="i"> -->
           <div class="row" style="margin: auto;">
-          <form novalidate class="col-12"
-           [formGroup]="form" (ngSubmit)="sendToAPI(form.value)">
-           
-           <div class="input-group">
-                <div class="col-4">
-                <div class="form-group">
-                  <label for="name">City</label>
-                  <input type="search" id="name" class="form-control" 
-                  placeholder="enter city..."
-                   formControlName="name" required></div> 
-                </div>
-                <div class="col-4">
-                  <div class="form-group"> 
-                  <label for="temp">Units</label>
-                  <input type="search" id="temp" class="form-control"
-                   placeholder="enter units..." 
-                  formControlName="temp" required>
-                           <!-- <div [hidden]="weatherData.temp.valid || weatherData.temp.pristine"
-                           class="alert alert-danger">
-                            Units are required! please choose from <br>
-                            metric, standard or ml
-                           </div> -->
-                  </div>    
-                </div> 
+          <form novalidate class="col-12" 
+          [formGroup]="form"
+           (ngSubmit)="sendToAPI(form.value)">  
+           <div formArrayName="weather">
+            <div *ngFor="let itemCity of weatherArray.controls; let i = index;"  [formGroupName]="i"> 
+              <div class="input-group">
                 <div class="col-4">
                   <div class="form-group">
-                  <button class="btn btn-warning"   
-                    [disabled]="!form.valid" type="submit" 
-                    (click)="onSave(form.value)">+</button>
-                </div>    
-              </div>     
-            </div> 
-          </form>
-          
-          <div class="container" *ngIf="weatherData != null">
-            <div class="card results" *ngFor="let weather of weatherData">
-              <h2>Your Search for {{weather.name}}</h2>
-              <div class="row pt-5">  
-             <div class="col">city: {{weather.name}}
-              <img [src]="weatherIconURL + weather.weather[0].icon +'.png'">
-              temp:  - {{weather.main.temp}} </div>
-             </div>  
-           
+                    <label for="name">City</label>
+                    <input type="search" id="name" class="form-control" 
+                    placeholder="enter city..."
+                     formControlName="name" required></div> 
+                  </div>
+                  <div class="col-4">
+                    <div class="form-group">  
+                    <label for="temp">Units</label>
+                    <input type="search" id="temp" class="form-control"
+                     placeholder="enter units..." 
+                    formControlName="temp" required>
+                             <!-- <div [hidden]="weatherData.temp.valid || weatherData.temp.pristine"
+                             class="alert alert-danger">
+                              Units are required! please choose from <br>
+                              metric, standard or ml
+                             </div> -->
+                            </div>
+  
+                  </div>    
+                       <div class="col-4">
+                        <div class="form-group"> 
+                          <button class="btn btn-warning"   
+                             type="submit" 
+                             [disabled]="!form.valid"
+                            (click)="onSave(form.value,i)">+</button>
+                        </div> 
+                       </div> 
+                       <!-- [disabled]="!form.valid" -->
+              </div> 
+             <!-- *********** display weather ************ -->
+             <div class="container" *ngIf="weatherData[i] != null">
+              <div class="card results" *ngFor="let weather of weatherData">
+                <h2>Your Search for {{weatherData[i].name}}</h2>
+                <h4>
+                  <div class="row">  
+                    <div class="col">
+                      {{weatherData[0].name}}
+                      <img [src]="weatherIconURL + weatherData[i].weather[0].icon +'.png'">
+                      {{weatherData[i].weather[0].description}} / {{weatherData[i].main.temp}}°
+                    </div>
+                  </div>  
+                </h4>
+              </div>
             </div>
-          </div>
+             </div> 
+           </div> 
+
+          </form>
+         
+   
           </div>
       </div>
    </div>
 
-</ng-container>          
+</ng-container>    
 
-<app-forecast-result></app-forecast-result>
+<div *ngIf="weatherData">
+	<h2>Weather list:</h2>
+  <ul> 
+    <li *ngFor="let city of weatherData;index as i" style="font-weight: bolder;">
+      <h4>
+        {{i + 1}}. {{city.name}}  {{city.main.temp}}°:{{city.weather[0].description}}
+      </h4> 
+     </li>
+  </ul>
+</div>
+
