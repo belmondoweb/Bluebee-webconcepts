@@ -1,2 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+/* You can add global styles to this file, and also import other style files */
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+    
+}
+.form-group{
+    margin: 5px;
+    
+    text-align: center;
+    padding-top: 5em;
+}
+.btn-warning.disabled, .btn-warning:disabled {
+    margin: 25px;
+}
+.form{
+    justify-content: center;
+}
+.container{
+    margin: auto;
+    padding: 100px;
+}
+ul {
+    list-style-type: none;
+}
+h2, h3{
+    color: rgb(219, 152, 8);
+    text-shadow: 2px 1px #48444402;
+}
+
+.result-cities{
+    justify-content: center !important;
+    text-align: center;
+    padding: 30px;
+    margin: 50px;
+
+}
+.result-cities-list{
+    justify-content: center !important;
+    text-align: center;
+    padding: 30px;
+    margin: 50px;
+    background: rgb(240, 241, 247);
+   height: 300px;
+
+}
+
+.card{
+    padding: auto; 
+  }
+  .card-title {
+      margin-bottom: .5rem;
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      font-style: italic;
+  }
