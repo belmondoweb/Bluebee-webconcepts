@@ -17,22 +17,14 @@ import { __values } from 'tslib';
   styleUrls: ['./search-city.component.css']
 })
 export class SearchCityComponent implements OnInit {
-  // @Input('weatherData') weatherItem: ICity;
   public cities$: Observable<ICity[]>; 
-  public city: City;
   weatherIconURL = 'https://openweathermap.org/img/w/';
-  public citiesWeather: City[] = [];
-  currentCity: ICity |null = null;
- 
-private citySub = new Subject<string>();
+
   form: FormGroup;
   search: FormControl;
   formArray: FormArray;
-  cityID: number =6;
-  searchText: string|null=null;
   private citySub$: Subject<void> = new Subject(); //maybe will use later if ...
   weatherData: any=[];
-  submitted = false;  
   weatherIndex: any;
 
   constructor(private _service: WeatherServiceService, private fb: FormBuilder ) { 
@@ -45,14 +37,7 @@ private citySub = new Subject<string>();
       weather : this.fb.array([this.addWeatherGroup()])
     });
     this.getCityList();
-    // this.formArray = new FormArray([
-    //   new FormGroup({
-        
-    //     name: new FormControl(''),
-    //     temp: new FormControl(''),
-    //   })
-        
-    // ])  
+    
   }
 
   addWeatherGroup(){
@@ -61,8 +46,7 @@ private citySub = new Subject<string>();
       temp: ['',Validators.required],
     });
   }
-  // name:['',Validators.required],
-  // temp: ['',Validators.required],
+
   get weatherArray(){
   return this.form.get('weather') as FormArray;
   }
@@ -70,7 +54,6 @@ private citySub = new Subject<string>();
 // ******** Save to List *********** //
     onSave(form,i){
       this.weatherIndex = i;
-    //  this.formArray.push(this.form.value) 
       this._service.addWeatherItem(this.form.value) 
       localStorage.setItem('local saved cities', JSON.stringify(form));
         // window.alert('Still WORKING ON IT!! lol ;)\n\n' + JSON.stringify(this.form.value, null, 4));
@@ -95,11 +78,4 @@ private citySub = new Subject<string>();
       })
       }
     
-  // yesturday ... will not use
-  // searchCity(cityId: string, units){
-  //  this._service.fetchrApi(cityId, units).subscribe(data=>
-  //   this.weatherData = data)
-  //   console.log('Haloha I am here : >',cityId)
-  // }
- 
 }

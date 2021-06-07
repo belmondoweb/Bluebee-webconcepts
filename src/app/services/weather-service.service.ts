@@ -18,8 +18,6 @@ weather: City[]=[];
 private savedCities: BehaviorSubject<ICity[]>;
 //  image API
 weatherIconURL = 'https://openweathermap.org/img/w/';
-// API = using this for get and set //
-//  `${environment.weatherUrl}${city}${environment.weatherParms}${units}`
 
   constructor(private _http: HttpClient ) { 
   }
@@ -52,33 +50,16 @@ private handleError(error: HttpErrorResponse) {
   getWeatherItems() {
     return this.weather;
    }
+
+
 /// Save Add weather ////
     addWeatherItem(weatherItem: ICity):void{
   const data = WEATHER_ITEMS.push(weatherItem);
 }
 
-// public addCity(weatherData: ICity): void {
-//   let savedCities = this.getLocalSavedCities();
-//   const cityItem = savedCities.find((city: ICity) => city.id === weatherData.id);
-
-//   if (cityItem) {
-//     savedCities = savedCities.map((city: ICity) => {
-//       return city.id === weatherData.id ? weatherData : city;
-//     });
-//   } else {
-//     savedCities.push(weatherData);
-//   }
-
-//   this.saveToLocal(savedCities);
-//   this.savedCities.next(savedCities);
-// }
-
-
-
 
 ///  **** Fetch api request ***** ///
   
-// export const API_Key='0d7303c17ee3d3482cd82a2ad273a90d'; moved to environment///
 fetchrApi(city: string, units:any): Observable<City[]> {
 
   return this._http.get<City[]>
@@ -91,5 +72,3 @@ fetchrApi(city: string, units:any): Observable<City[]> {
 
 
 }
-// export const find_API = 'https://api.openweathermap.org/data/2.5/find?q=Londo{API_Key}n&units=imperial'; cheking....
-// 

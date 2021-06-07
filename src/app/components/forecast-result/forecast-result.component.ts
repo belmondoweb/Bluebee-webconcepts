@@ -11,9 +11,7 @@ import { WeatherServiceService } from 'src/app/services/weather-service.service'
   styleUrls: ['./forecast-result.component.scss']
 })
 export class ForecastResultComponent implements OnInit {
-  // @Input('item') weatherItem: City;
-  // @Output() weatherData;
-  public city: City;
+
   weatherIconURL = 'https://openweathermap.org/img/w/';
   public citiesWeather: City[] = [];
   form: FormGroup;
@@ -48,7 +46,6 @@ public current: City;
 // ******** Save to List *********** //
     onSave(form,i){
       this.weatherIndex = i;
-    //  this.formArray.push(this.form.value) 
       this._service.addWeatherItem(this.form.value) 
       localStorage.setItem('local saved cities', JSON.stringify(form));
         // window.alert('Still WORKING ON IT!! lol ;)\n\n' + JSON.stringify(this.form.value, null, 4));
